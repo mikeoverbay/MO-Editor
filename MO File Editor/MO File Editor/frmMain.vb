@@ -156,6 +156,12 @@ Public Class frmMain
 
         ms.Close()
         ms.Dispose()
+        m_save.Enabled = True
+        m_show_strings.Enabled = True
+        If frmShowStrings.Visible Then
+            'update the display of strings if they are visiable
+            push_strings_to_textbox()
+        End If
 
         search_tb.Focus()
     End Sub
@@ -263,11 +269,38 @@ Public Class frmMain
                 trans_indices(i).offset -= d2
             End If
         Next
+        sb.Length = 0
+        If frmShowStrings.Visible Then
+            'update the display of strings if they are visiable
+           push_strings_to_textbox
+        End If
 
         search_tb.Focus() ' give attenting to new name text box
     End Sub
+    Private Sub push_strings_to_textbox()
+
+        Dim ta = trans_strings.ToList
+        ta.Sort()
+        sb.Length = 0
+        For Each s In ta
+            If s IsNot Nothing Then
+                If s.Length > 1 Then
+                    sb.AppendLine(s)
+                End If
+            End If
+        Next
+        frmShowStrings.show_tb.Text = sb.ToString
+        frmShowStrings.show_tb.SelectionLength = 0
+        frmShowStrings.show_tb.SelectionStart = 0
+
+        Application.DoEvents()
+    End Sub
 
 
+    Dim sb As New StringBuilder
 
-
+    Private Sub m_show_strings_Click(sender As Object, e As EventArgs) Handles m_show_strings.Click
+        frmShowStrings.Visible = True
+       push_strings_to_textbox
+    End Sub
 End Class

@@ -35,12 +35,13 @@ Partial Class frmMain
         Me.new_name_tb = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.replace_bt = New System.Windows.Forms.Button()
+        Me.m_show_strings = New System.Windows.Forms.ToolStripMenuItem()
         Me.MM.SuspendLayout()
         Me.SuspendLayout()
         '
         'MM
         '
-        Me.MM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.file})
+        Me.MM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.file, Me.m_show_strings})
         Me.MM.Location = New System.Drawing.Point(0, 0)
         Me.MM.Name = "MM"
         Me.MM.Size = New System.Drawing.Size(390, 24)
@@ -57,13 +58,14 @@ Partial Class frmMain
         'm_open
         '
         Me.m_open.Name = "m_open"
-        Me.m_open.Size = New System.Drawing.Size(103, 22)
+        Me.m_open.Size = New System.Drawing.Size(152, 22)
         Me.m_open.Text = "Open"
         '
         'm_save
         '
+        Me.m_save.Enabled = False
         Me.m_save.Name = "m_save"
-        Me.m_save.Size = New System.Drawing.Size(103, 22)
+        Me.m_save.Size = New System.Drawing.Size(152, 22)
         Me.m_save.Text = "Save"
         '
         'OpenFile
@@ -79,6 +81,7 @@ Partial Class frmMain
         'results_tb
         '
         Me.results_tb.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.results_tb.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.results_tb.ForeColor = System.Drawing.Color.White
         Me.results_tb.Location = New System.Drawing.Point(12, 104)
         Me.results_tb.Multiline = True
@@ -98,6 +101,7 @@ Partial Class frmMain
         'search_tb
         '
         Me.search_tb.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.search_tb.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.search_tb.ForeColor = System.Drawing.Color.White
         Me.search_tb.Location = New System.Drawing.Point(15, 41)
         Me.search_tb.Name = "search_tb"
@@ -107,6 +111,7 @@ Partial Class frmMain
         'new_name_tb
         '
         Me.new_name_tb.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.new_name_tb.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.new_name_tb.ForeColor = System.Drawing.Color.White
         Me.new_name_tb.Location = New System.Drawing.Point(210, 41)
         Me.new_name_tb.Name = "new_name_tb"
@@ -131,6 +136,13 @@ Partial Class frmMain
         Me.replace_bt.TabIndex = 6
         Me.replace_bt.Text = "Replace..."
         Me.replace_bt.UseVisualStyleBackColor = True
+        '
+        'm_show_strings
+        '
+        Me.m_show_strings.Enabled = False
+        Me.m_show_strings.Name = "m_show_strings"
+        Me.m_show_strings.Size = New System.Drawing.Size(87, 20)
+        Me.m_show_strings.Text = "Show Strings"
         '
         'frmMain
         '
@@ -168,5 +180,6 @@ Partial Class frmMain
     Friend WithEvents new_name_tb As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents replace_bt As System.Windows.Forms.Button
+    Friend WithEvents m_show_strings As System.Windows.Forms.ToolStripMenuItem
 
 End Class
