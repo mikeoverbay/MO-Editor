@@ -27,6 +27,7 @@ Partial Class frmMain
         Me.file = New System.Windows.Forms.ToolStripMenuItem()
         Me.m_open = New System.Windows.Forms.ToolStripMenuItem()
         Me.m_save = New System.Windows.Forms.ToolStripMenuItem()
+        Me.m_show_strings = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFile = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFile = New System.Windows.Forms.SaveFileDialog()
         Me.results_tb = New System.Windows.Forms.TextBox()
@@ -35,13 +36,13 @@ Partial Class frmMain
         Me.new_name_tb = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.replace_bt = New System.Windows.Forms.Button()
-        Me.m_show_strings = New System.Windows.Forms.ToolStripMenuItem()
+        Me.m_hash = New System.Windows.Forms.ToolStripMenuItem()
         Me.MM.SuspendLayout()
         Me.SuspendLayout()
         '
         'MM
         '
-        Me.MM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.file, Me.m_show_strings})
+        Me.MM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.file, Me.m_show_strings, Me.m_hash})
         Me.MM.Location = New System.Drawing.Point(0, 0)
         Me.MM.Name = "MM"
         Me.MM.Size = New System.Drawing.Size(390, 24)
@@ -58,15 +59,22 @@ Partial Class frmMain
         'm_open
         '
         Me.m_open.Name = "m_open"
-        Me.m_open.Size = New System.Drawing.Size(152, 22)
+        Me.m_open.Size = New System.Drawing.Size(103, 22)
         Me.m_open.Text = "Open"
         '
         'm_save
         '
         Me.m_save.Enabled = False
         Me.m_save.Name = "m_save"
-        Me.m_save.Size = New System.Drawing.Size(152, 22)
+        Me.m_save.Size = New System.Drawing.Size(103, 22)
         Me.m_save.Text = "Save"
+        '
+        'm_show_strings
+        '
+        Me.m_show_strings.Enabled = False
+        Me.m_show_strings.Name = "m_show_strings"
+        Me.m_show_strings.Size = New System.Drawing.Size(87, 20)
+        Me.m_show_strings.Text = "Show Strings"
         '
         'OpenFile
         '
@@ -137,12 +145,13 @@ Partial Class frmMain
         Me.replace_bt.Text = "Replace..."
         Me.replace_bt.UseVisualStyleBackColor = True
         '
-        'm_show_strings
+        'm_hash
         '
-        Me.m_show_strings.Enabled = False
-        Me.m_show_strings.Name = "m_show_strings"
-        Me.m_show_strings.Size = New System.Drawing.Size(87, 20)
-        Me.m_show_strings.Text = "Show Strings"
+        Me.m_hash.Enabled = False
+        Me.m_hash.Name = "m_hash"
+        Me.m_hash.Size = New System.Drawing.Size(78, 20)
+        Me.m_hash.Text = "Show Hash"
+        Me.m_hash.Visible = False
         '
         'frmMain
         '
@@ -181,5 +190,6 @@ Partial Class frmMain
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents replace_bt As System.Windows.Forms.Button
     Friend WithEvents m_show_strings As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents m_hash As System.Windows.Forms.ToolStripMenuItem
 
 End Class

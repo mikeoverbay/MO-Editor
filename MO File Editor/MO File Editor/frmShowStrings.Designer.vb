@@ -41,6 +41,7 @@ Partial Class frmShowStrings
         Me.show_tb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.show_tb.Size = New System.Drawing.Size(224, 277)
         Me.show_tb.TabIndex = 0
+        Me.show_tb.WordWrap = False
         '
         'Label1
         '
@@ -64,7 +65,7 @@ Partial Class frmShowStrings
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmShowStrings"
-        Me.Text = "frmShowStrings"
+        Me.Text = "Pick a Name.."
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

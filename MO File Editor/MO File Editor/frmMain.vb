@@ -23,32 +23,20 @@ Imports System.Globalization
 
 
 Public Class frmMain
-    Dim os_strings() As String
-    Dim trans_strings() As String
-    Dim count As Integer
-    Dim hash_tbl() As Integer
-    Dim info_string As String
     Dim info_string_length As Integer = 0
     Dim hash_count As Integer = 0
     Dim file_size As Integer = 0
     Dim delta As Integer = 0
     Dim os_string_sec_length As Integer = 0
-    Dim os_indices() As indice_
-    Dim hash_indices() As indice_
-    Dim trans_indices() As indice_
     Dim magic As Integer
     Dim info_index_offset As Integer
     Dim hash_index_offset As Integer
     Dim info_index_count As Integer
     Dim info_index_string_index As Integer
 
-    Public Structure indice_
-        Public len As Integer
-        Public offset As Integer
-    End Structure
     Private Sub m_open_Click(sender As Object, e As EventArgs) Handles m_open.Click
         Dim p As String = My.Settings.path
-        delta = 0
+        delta = 0 ' reset to ZERO!
         Dim index_os, index_tl, index_info As ULong
         Dim cp As ULong
         Dim enc As New System.Text.ASCIIEncoding
@@ -94,6 +82,8 @@ Public Class frmMain
         'make room for the data
         ReDim os_strings(count)
         ReDim trans_strings(count)
+        ReDim trans_strings_raw(count)
+        ReDim trans_flags(count)
         ReDim trans_indices(count)
         ReDim os_indices(count)
         ReDim hash_tbl(hash_count)
@@ -130,7 +120,7 @@ Public Class frmMain
         info_index_string_index = index_info
 
         Dim trans_index = ms.Position ' save start of trans string indexes which is next
-        ms.Position = index_info ' move to where project sting is stored
+        ms.Position = index_info ' move to where project string is stored
 
         ReDim n_data(info_string_length) 'make room
         n_data = br.ReadBytes(info_string_length) ' read project info
@@ -152,17 +142,23 @@ Public Class frmMain
             ReDim n_data(s_length)
             n_data = br.ReadBytes(s_length)
             trans_strings(i) = enc.GetString(n_data)
+            trans_strings_raw(i) = n_data
+            trans_flags(i) = False
         Next
 
         ms.Close()
         ms.Dispose()
         m_save.Enabled = True
         m_show_strings.Enabled = True
+        m_hash.Enabled = True
+        'strange but some lines have a lf ctr (10) in them.. This screws up the selection in the string table form.
+        For i = 0 To count - 1
+            trans_strings(i) = trans_strings(i).Replace(vbLf, " ")
+        Next
         If frmShowStrings.Visible Then
             'update the display of strings if they are visiable
             push_strings_to_textbox()
         End If
-
         search_tb.Focus()
     End Sub
 
@@ -212,11 +208,19 @@ Public Class frmMain
         bw.Write(dd)
         bw.Write(e_byte) 'must have a terminator
         For i = 0 To count - 1
-            Dim d = System.Text.Encoding.UTF8.GetBytes(trans_strings(i).ToArray) 'write as UTF8
-            bw.Write(d)
-            bw.Write(e_byte) 'must have a terminator
+            If trans_flags(i) Then
+                Dim d = System.Text.Encoding.UTF8.GetBytes(trans_strings(i).ToArray) 'write as UTF8
+                bw.Write(d)
+                bw.Write(e_byte) 'must have a terminator
+            Else
+                For Each b In trans_strings_raw(i)
+                    bw.Write(b)
+                Next
+                bw.Write(e_byte) 'must have a terminator
+            End If
         Next
-        ReDim Preserve out_data(file_size - 1)
+
+        ReDim Preserve out_data((file_size - 1) - delta)
         Dim p = ms.Position
         System.IO.File.WriteAllBytes(OpenFile.FileName, out_data) ' save the out_date buffer.
 
@@ -240,39 +244,47 @@ Public Class frmMain
         End If
         Dim cnt As Integer = 0
         Dim index As Integer = 0
+        'make sure we only found ONE instance of the search string!
         For i = 0 To count - 1
             If trans_strings(i) = search_tb.Text Then
                 cnt += 1
                 index = i
             End If
-        Next
-        'make sure we only found ONE instance of the search string!
+
+        Next i
+
         If cnt > 1 Then
-            MsgBox("I found more than one instance of " + search_tb.Text + vbCrLf _
-                    + "This will mess up the game!. Check you Search Name!", MsgBoxStyle.Exclamation, "Not Good!")
-            Return
+            If MsgBox("I found more than one instance of " + search_tb.Text + vbCrLf _
+                    + "This could mess up the game!. Do it anyways?", MsgBoxStyle.YesNo, "Not Good!") = MsgBoxResult.No Then
+                Return
+            End If
         End If
         If cnt = 0 Then
             MsgBox("Name not found!", MsgBoxStyle.Exclamation, "Opps!")
-            Return 
+            Return
         End If
         'We need the difference in size of the old and new name.
         'This is used to offset the index positions of the lookup tables.
-        delta += trans_strings(index).Length - new_name_tb.Text.Length
-        Dim d2 = trans_strings(index).Length - new_name_tb.Text.Length
-        results_tb.Text = new_name_tb.Text + " <---- " + trans_strings(index)
-        trans_strings(index) = new_name_tb.Text
-        trans_indices(index).len = new_name_tb.Text.Length
-        'Adjust postion of all following strings positions.
-        For i = 0 To count
-            If i > index Then
-                trans_indices(i).offset -= d2
+        For i = 0 To count - 1
+            If trans_strings(i) = search_tb.Text Then
+                trans_flags(i) = True
+                cnt += 1
+                index = i
+                Dim d2 = trans_strings(index).Length - new_name_tb.Text.Length
+                delta += d2
+                results_tb.Text = new_name_tb.Text + " <---- " + trans_strings(index)
+                trans_strings(index) = new_name_tb.Text
+                trans_indices(index).len = new_name_tb.Text.Length
+                'Adjust postion of all following strings positions.
+                For j = index + 1 To count
+                    trans_indices(j).offset -= d2
+                Next
             End If
         Next
         sb.Length = 0
         If frmShowStrings.Visible Then
             'update the display of strings if they are visiable
-           push_strings_to_textbox
+            push_strings_to_textbox()
         End If
 
         search_tb.Focus() ' give attenting to new name text box
@@ -289,6 +301,8 @@ Public Class frmMain
                 End If
             End If
         Next
+        frmShowStrings.show_tb.Text = ""
+        Application.DoEvents()
         frmShowStrings.show_tb.Text = sb.ToString
         frmShowStrings.show_tb.SelectionLength = 0
         frmShowStrings.show_tb.SelectionStart = 0
@@ -297,10 +311,22 @@ Public Class frmMain
     End Sub
 
 
-    Dim sb As New StringBuilder
 
     Private Sub m_show_strings_Click(sender As Object, e As EventArgs) Handles m_show_strings.Click
         frmShowStrings.Visible = True
        push_strings_to_textbox
+    End Sub
+
+    Private Sub m_hash_Click(sender As Object, e As EventArgs) Handles m_hash.Click
+        'hash table junk which I dont understand...
+        frmTable.Visible = True
+        sb.Clear()
+        For i = 0 To hash_count - 1
+            Dim p = hash_tbl(i)
+            sb.AppendLine(trans_strings(p))
+
+        Next
+        frmTable.hash_tb.Text = sb.ToString
+
     End Sub
 End Class

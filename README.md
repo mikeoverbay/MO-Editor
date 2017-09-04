@@ -4,19 +4,19 @@
 
 ## BACKUP your files before editing them!
 
-The editor will create a backup when you load a .mo file and change the extension to .mo_BU
-You can load the backups in MO but it will save back over the original .mo
-The .mo_BU will never be over written.
+The editor will create a backup when you load a .mo file and change the extension to .mo_BU<br/>
+You can load the backups in MO but it will save back over the original .mo<br/>
+The .mo_BU will never be over written.<br/>
 
 
 ### How this works:
 
-The .mo files are used to translation to different languages.
-MO Editor allows you to search and replace the text in these files as seen on screen.
-You should be able to edit any text that's in the game using MO Editor.
-The ones you will probably will what to edit are the nation_tankmen.mo files.
-Not only can you change the name of the characters, you can also change any string in the file.
-You could change "Commander" to "Big Cheese"
+The .mo files are used to translate to different languages.<br/><br/>
+MO Editor allows you to search and replace the text in these files as seen on screen.<br/>
+You should be able to edit any text that's in the game using MO Editor.<br/>
+The ones you will probably will what to edit are the nation_tankmen.mo files.<br/>
+Not only can you change the name of the characters, you can also change any string in the file.<br/>
+You could change "Commander" to "Big Cheese"<br/>
 
 ### You will need to reload the WoT Client for any changes to be seen!
 
@@ -25,7 +25,7 @@ You could change "Commander" to "Big Cheese"
 
 ### Use at your own risk..
 
-If you fail to protect your files by backing them up and something goes very wrong, you could fine yourself downloading the entire game again!
+If you fail to protect your files by backing them up and something goes very wrong, you could fine yourself downloading the entire game again!<br/>
 
 #### You can see a demo here:
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=HVhnA8gfp5E
