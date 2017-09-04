@@ -25,7 +25,8 @@ You could change "Commander" to "Big Cheese"
 #### The Path to the .MO files is: World_of_Tanks\res\text\lc_messages<br/><br/>
 <table width="80%" border="1">
   <tr>
-    <td><img src="http://tnmshouse.com/lychee/uploads/big/9ee4f050fc3b548c55182d732e3cfdd8.png" </td>
+    <td><img src="http://tnmshouse.com/lychee/uploads/big/9ee4f050fc3b548c55182d732e3cfdd8.png"
+alt="IMAGE ALT TEXT HERE" width="433" height="321" border="10" /> </td>
     <td>This is the String listing window.<br/>
 You can look through here to find a string you want to replace.<br/>
 Double clicking on a string will select it and copy its name in to the Old Name field.<br/></td>
