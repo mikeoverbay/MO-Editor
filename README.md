@@ -13,7 +13,7 @@ The .mo_BU will never be over written.<br/>
 <td>
 
 ### How this works:
-The .mo files are used to translation to different languages.
+The .mo files are used for translation of text to different languages.
 MO Editor allows you to search and replace the text in these files as seen on screen.
 You should be able to edit any text that's in the game using MO Editor.
 The ones you will probably will what to edit are the nation_tankmen.mo files.
