@@ -38,7 +38,7 @@ Double clicking on a string will select it and<br/>copy its name in to the Old N
 alt="IMAGE ALT TEXT HERE" width="204" height="328" border="10" /> </td>
     <td>This is the select for replacment window.<br/>
 You can check which instances to replace.<br/>
-You can experiment with this.. For replacing tank names.. Just checking the bottom 2 works.<br/></td>
+You can experiment with this.. For replacing tank names..<br/>Just checking the bottom 2 works.<br/></td>
   </tr>
 </table>
 
