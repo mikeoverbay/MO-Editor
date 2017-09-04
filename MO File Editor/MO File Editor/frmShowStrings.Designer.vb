@@ -39,7 +39,7 @@ Partial Class frmShowStrings
         Me.show_tb.Multiline = True
         Me.show_tb.Name = "show_tb"
         Me.show_tb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.show_tb.Size = New System.Drawing.Size(224, 277)
+        Me.show_tb.Size = New System.Drawing.Size(219, 239)
         Me.show_tb.TabIndex = 0
         Me.show_tb.WordWrap = False
         '
@@ -58,11 +58,11 @@ Partial Class frmShowStrings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(224, 300)
+        Me.ClientSize = New System.Drawing.Size(219, 262)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.show_tb)
         Me.ForeColor = System.Drawing.Color.Gainsboro
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmShowStrings"
         Me.Text = "Pick a Name.."

@@ -15,5 +15,8 @@ Module modGlobals
     Public count As Integer
     Public info_string As String
     Public sb As New StringBuilder
-
+    Public uselist() As uselist_
+    Public Structure uselist_
+        Public use As Boolean
+    End Structure
 End Module

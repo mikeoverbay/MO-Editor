@@ -166,7 +166,7 @@ Public Class frmMain
     Private Sub m_save_Click(sender As Object, e As EventArgs) Handles m_save.Click
 
         Dim out_data((file_size + 1) - delta) As Byte 'size output buffer
-
+        replace_bt.Enabled = False
         Dim ms As New MemoryStream(out_data)
         Dim bw As New BinaryWriter(ms)
         Dim version As Integer = 0
@@ -227,13 +227,14 @@ Public Class frmMain
         'clean up
         ms.Close()
         ms.Dispose()
-
+        replace_bt.Enabled = True
         search_tb.Focus() ' give attenting to new name text box
 
     End Sub
 
 
     Private Sub replace_bt_Click(sender As Object, e As EventArgs) Handles replace_bt.Click
+        FrmUse.Panel1.Controls.Clear()
         If search_tb.Text.Length = 0 Then
             MsgBox("You need to enter a search string!", MsgBoxStyle.Exclamation, "Oops!")
             Return
@@ -257,30 +258,57 @@ Public Class frmMain
             If MsgBox("I found more than one instance of " + search_tb.Text + vbCrLf _
                     + "This could mess up the game!. Do it anyways?", MsgBoxStyle.YesNo, "Not Good!") = MsgBoxResult.No Then
                 Return
+                FrmUse.Visible = True
             End If
         End If
         If cnt = 0 Then
             MsgBox("Name not found!", MsgBoxStyle.Exclamation, "Opps!")
             Return
         End If
+        results_tb.Text = ""
         'We need the difference in size of the old and new name.
         'This is used to offset the index positions of the lookup tables.
+        ReDim uselist(cnt)
+        For i = 0 To cnt - 1
+            uselist(cnt) = New uselist_
+            uselist(i).use = False
+            Dim c As New CheckBox
+            c.Text = search_tb.Text
+            c.Checked = False
+            c.Tag = i
+            AddHandler c.CheckedChanged, AddressOf handle_checked_changed
+            c.Location = New Point(5, i * 25)
+            FrmUse.Panel1.Controls.Add(c)
+        Next
+        'If cnt = 1 Then
+        '    'uselist(0).use = True
+        'End If
+        FrmUse.StartPosition = FormStartPosition.Manual
+        FrmUse.Location = New Point(Me.Location.X + Me.Width - FrmUse.Width, Me.Location.Y + Me.Height)
+        FrmUse.ShowDialog()
+        cnt = -1 ' needs to start and -1 !!!!
+        Dim use As Boolean = False
+        Dim replace_cnt As Integer = 0
         For i = 0 To count - 1
+
             If trans_strings(i) = search_tb.Text Then
-                trans_flags(i) = True
                 cnt += 1
-                index = i
-                Dim d2 = trans_strings(index).Length - new_name_tb.Text.Length
-                delta += d2
-                results_tb.Text = new_name_tb.Text + " <---- " + trans_strings(index)
-                trans_strings(index) = new_name_tb.Text
-                trans_indices(index).len = new_name_tb.Text.Length
-                'Adjust postion of all following strings positions.
-                For j = index + 1 To count
-                    trans_indices(j).offset -= d2
-                Next
+                If uselist(cnt).use Then
+                    replace_cnt += 1
+                    trans_flags(i) = True
+                    index = i
+                    Dim d2 = trans_strings(index).Length - new_name_tb.Text.Length
+                    delta += d2
+                    trans_strings(index) = new_name_tb.Text
+                    trans_indices(index).len = new_name_tb.Text.Length
+                    'Adjust postion of all following strings positions.
+                    For j = index + 1 To count
+                        trans_indices(j).offset -= d2
+                    Next
+                End If
             End If
         Next
+        results_tb.Text = new_name_tb.Text + " ----> " + search_tb.Text + " Replaced " + replace_cnt.ToString + " times."
         sb.Length = 0
         If frmShowStrings.Visible Then
             'update the display of strings if they are visiable
@@ -310,11 +338,18 @@ Public Class frmMain
         Application.DoEvents()
     End Sub
 
-
+    Private Sub handle_checked_changed(ByVal sender As Object, e As EventArgs)
+        Dim c = DirectCast(sender, CheckBox)
+        If c.Checked Then
+            uselist(c.Tag).use = c.Checked
+        End If
+    End Sub
 
     Private Sub m_show_strings_Click(sender As Object, e As EventArgs) Handles m_show_strings.Click
         frmShowStrings.Visible = True
-       push_strings_to_textbox
+        frmShowStrings.Width = Me.Width
+        frmShowStrings.Location = New Point(Me.Location.X, Me.Location.Y + Me.Height)
+        push_strings_to_textbox()
     End Sub
 
     Private Sub m_hash_Click(sender As Object, e As EventArgs) Handles m_hash.Click

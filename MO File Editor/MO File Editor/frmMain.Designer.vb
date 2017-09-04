@@ -28,6 +28,7 @@ Partial Class frmMain
         Me.m_open = New System.Windows.Forms.ToolStripMenuItem()
         Me.m_save = New System.Windows.Forms.ToolStripMenuItem()
         Me.m_show_strings = New System.Windows.Forms.ToolStripMenuItem()
+        Me.m_hash = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFile = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFile = New System.Windows.Forms.SaveFileDialog()
         Me.results_tb = New System.Windows.Forms.TextBox()
@@ -36,7 +37,6 @@ Partial Class frmMain
         Me.new_name_tb = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.replace_bt = New System.Windows.Forms.Button()
-        Me.m_hash = New System.Windows.Forms.ToolStripMenuItem()
         Me.MM.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -75,6 +75,14 @@ Partial Class frmMain
         Me.m_show_strings.Name = "m_show_strings"
         Me.m_show_strings.Size = New System.Drawing.Size(87, 20)
         Me.m_show_strings.Text = "Show Strings"
+        '
+        'm_hash
+        '
+        Me.m_hash.Enabled = False
+        Me.m_hash.Name = "m_hash"
+        Me.m_hash.Size = New System.Drawing.Size(78, 20)
+        Me.m_hash.Text = "Show Hash"
+        Me.m_hash.Visible = False
         '
         'OpenFile
         '
@@ -145,14 +153,6 @@ Partial Class frmMain
         Me.replace_bt.Text = "Replace..."
         Me.replace_bt.UseVisualStyleBackColor = True
         '
-        'm_hash
-        '
-        Me.m_hash.Enabled = False
-        Me.m_hash.Name = "m_hash"
-        Me.m_hash.Size = New System.Drawing.Size(78, 20)
-        Me.m_hash.Text = "Show Hash"
-        Me.m_hash.Visible = False
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -167,9 +167,11 @@ Partial Class frmMain
         Me.Controls.Add(Me.results_tb)
         Me.Controls.Add(Me.MM)
         Me.ForeColor = System.Drawing.Color.White
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MM
         Me.Name = "frmMain"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "MO Editor"
         Me.MM.ResumeLayout(False)
         Me.MM.PerformLayout()
