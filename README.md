@@ -13,11 +13,11 @@ The .mo_BU will never be over written.<br/>
 <td>
 
 ### How this works:
-The .mo files are used for translation of text to different languages.
-MO Editor allows you to search and replace the text in these files as seen on screen.
-You should be able to edit any text that's in the game using MO Editor.
-The ones you will probably will what to edit are the nation_tankmen.mo files.
-Not only can you change the name of the characters, you can also change any string in the file.
+The .mo files are used for translation of text to different languages.<br/>
+MO Editor allows you to search and replace the text in these files as seen on screen.<br/>
+You should be able to edit any text that's in the game using MO Editor.<br/>
+The ones you will probably will what to edit are the nation_tankmen.mo files.<br/>
+Not only can you change the name of the characters, you can also change any string in the file.<br/>
 You could change "Commander" to "Big Cheese"
 
 ### You will need to reload the WoT Client for any changes to be seen!
