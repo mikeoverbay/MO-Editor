@@ -29,8 +29,8 @@ You could change "Commander" to "Big Cheese"
 alt="IMAGE ALT TEXT HERE" width="433" height="321" border="10" /> </td>
     <td>This is the String listing window.<br/>
 You can look through here to find a string<br/>you want to replace.<br/>
-Double clicking on a string will select it and copy<br/>
-its name in to the Old Name field.<br/></td>
+Double clicking on a string will select it and copy its name in to<br/>
+the Old Name field.<br/></td>
   </tr>
 </table>
 <table width="80%" border="1">
