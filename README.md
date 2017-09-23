@@ -26,7 +26,7 @@ You could change "Commander" to "Big Cheese"
 <table width="80%" border="1">
   <tr>
     <td><img src="http://tnmshouse.com/lychee/uploads/big/9ee4f050fc3b548c55182d732e3cfdd8.png"
-alt="List Panel" width="433" height="321" border="10" /> </td>
+alt="IMAGE ALT TEXT HERE" width="433" height="321" border="10" /> </td>
     <td>This is the String listing window.<br/>
 You can look through here to find a string<br/>you want to replace.<br/>
 Double clicking on a string will select it and<br/>copy its name in to the Old Name field.<br/></td>
@@ -34,7 +34,8 @@ Double clicking on a string will select it and<br/>copy its name in to the Old N
 </table>
 <table width="80%" border="1">
   <tr>
-    <td>![Selection Panel](http://tnmshouse.com/lychee/uploads/big/0daddaf60bc0cf6d9a750577aefc8615.png)</td>
+    <td><img src="http://tnmshouse.com/lychee/uploads/big/0daddaf60bc0cf6d9a750577aefc8615.png" 
+alt="IMAGE ALT TEXT HERE" width="204" height="328" border="10" /> </td>
     <td>This is the select for replacment window.<br/>
 You can check which instances to replace.<br/>
 You can experiment with this.. For replacing tank names..<br/>Just checking the bottom 2 works.<br/></td>
