@@ -34,7 +34,7 @@ Double clicking on a string will select it and<br/>copy its name in to the Old N
 </table>
 <table width="80%" border="1">
   <tr>
-    <td><img src="http://tnmshouse.com/lychee/uploads/big/0daddaf60bc0cf6d9a750577aefc8615.png" 
+    <td><img src="https://user-images.githubusercontent.com/15058778/30775300-be2d2ce6-a05e-11e7-9edc-4f76655528fe.png" 
 alt="IMAGE ALT TEXT HERE" width="204" height="328" border="10" /> </td>
     <td>This is the select for replacment window.<br/>
 You can check which instances to replace.<br/>
